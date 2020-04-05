@@ -1,7 +1,7 @@
 /**
  * Author: Tiberiu Paharnicu tp371
- * Version:1.2
- * Modified:04/04/2020 Time 17:00
+ * Version:1.3
+ * Modified:05/04/2020 Time 15:43
  */
 
 /**
@@ -55,59 +55,45 @@ public class Frame extends JFrame implements ActionListener {
     *Depending on the variable number chose it will change the number of mines being hidden
     in the cells therefore causing a change of difficulty.
      */
-    int changeableValue = 10;
-    Random rand = new Random();
-    int doge = rand.nextInt(changeableValue);
-    
-    
-   
-
-    //Mines
-    int[] mines = new int[10];
-
-    //button array
-    int[] buttons = new int[10];
-
-    //button list
-    ArrayList<Integer> newButtons = new ArrayList<Integer>();
-    
-    
+    int changeableValue = 3;
+    Random rand = new Random();    
+        
 
     public Frame(){
        
+        JButton[] buttons = new JButton[10];
+        String btn[] ={"1","2","3","4","5","6","7","8","9","10"};
+        
         window.setLayout(new GridLayout(0,3));
         panel_02.setBackground(Color.GRAY);
         panel_03.setBackground(Color.LIGHT_GRAY);
 
         
-
         //button settings
         panel_01.setLayout(new GridLayout(2,5));
+        
+        for(int i = 0 ; i < buttons.length; i++){
+            buttons[i] = new JButton(btn[i]);
+            buttons[i].setBackground(Color.BLACK);
+            buttons[i].setForeground(Color.BLACK);
+            buttons[i].addActionListener(new ActionListener(){
 
-        for(int i=1;i<= buttons.length;i++)
-        {
-            JButton btn = new JButton();
-            btn.setBackground(Color.BLACK);
-            btn.setForeground(Color.BLACK);
-            /**
-             * Created a list that will contain the buttons in order to manipulate them.
-             * Aim: select them random and change their color. RED / GREEN
-             */
-            List<Component> componentList = Arrays.asList(panel_01);//Takes elements buttons and stores them in a list
-            if(!componentList.contains(btn)){
-                panel_01.add(btn);
-            }
-            btn.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("Button is pressed");
+
                 }
                 
             });
-            
-            
+            panel_01.add(buttons[i]);
         }
         
+        //randomiser
+        for(int i = 0; i < changeableValue ; i++){
+            int random = (int) (Math.random() * 10);
+            System.out.println("Random number selected is: " + buttons[random]);
+        }
+
         
         panel_02.add(panel_inside_02);
         panel_inside_02.setLayout(new GridLayout(2,1));
