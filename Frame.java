@@ -79,15 +79,7 @@ public class Frame extends JFrame implements ActionListener {
         panel_02.setBackground(Color.GRAY);
         panel_03.setBackground(Color.LIGHT_GRAY);
 
-        for(int b = 0; b < 10;b++){
-            if(rand.nextInt(changeableValue) < 10){
-                mines[b] = 1;
-            }
-            else{
-                mines[b] = 0;
-            }
-        }
-    
+        
 
         //button settings
         panel_01.setLayout(new GridLayout(2,5));
@@ -101,7 +93,7 @@ public class Frame extends JFrame implements ActionListener {
              * Created a list that will contain the buttons in order to manipulate them.
              * Aim: select them random and change their color. RED / GREEN
              */
-            List<Component> componentList = Arrays.asList(panel_01.getComponents());
+            List<Component> componentList = Arrays.asList(panel_01);//Takes elements buttons and stores them in a list
             if(!componentList.contains(btn)){
                 panel_01.add(btn);
             }
